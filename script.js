@@ -28,11 +28,9 @@ const math = {
     students: [],
     teacher: {},
     addTeacher: function (teacher) {
-        teacher = teacher.name;
         this.teacher.name(teacher);
     },
     addStudent: function (student) {
-        student = student.name;
         this.students.push(student);
     },
 }
@@ -41,11 +39,9 @@ const coding = {
     students: [],
     teacher: {},
     addTeacher: function (teacher) {
-        teacher = teacher.name;
         this.teacher.name(teacher);
     },
     addStudent: function (student) {
-        student = student.name;
         this.students.push(student);
     },
 }
@@ -54,11 +50,9 @@ const english = {
     students: [],
     teacher: {},
     addTeacher: function (teacher) {
-        teacher = teacher.name;
         this.teacher.name(teacher);
     },
     addStudent: function (student) {
-        student = student.name;
         this.students.push(student);
     },
 }
@@ -71,14 +65,19 @@ const Niklas = {
     gender: "male",
     subjects: [],
     enlistToSubject: function (subject) {
-        subject = subject.name;
         this.subjects.push(subject);
+        subject.students.push(this);
     },
     quitSubject: function (subject) {
         const index = this.subjects.indexOf[subject];
         if (index !== -1) {
             this.subjects.splice(index, 1)
         }
+        const subjectIndex = subject.students.indexOf(this);
+        if ( subjectIndex !== -1 ) {
+            subject.students.splice(subjectIndex, 1);
+        }
+
     },
 }
 const jonas = {
@@ -87,14 +86,19 @@ const jonas = {
     gender: "male",
     subjects: [],
     enlistToSubject: function (subject) {
-        subject = subject.name;
         this.subjects.push(subject);
+        subject.students.push(this);
     },
     quitSubject: function (subject) {
-        const index = this.subjects.indexOf[subject];
+        const index = this.subjects.indexOf(subject);
         if (index !== -1) {
             this.subjects.splice(index, 1)
         }
+        const subjectIndex = subject.students.indexOf(this);
+        if ( subjectIndex !== -1 ) {
+            subject.students.splice(subjectIndex, 1);
+        }
+
     },
 }
 const morgane = {
@@ -103,14 +107,19 @@ const morgane = {
     gender: "female",
     subjects: [],
     enlistToSubject: function (subject) {
-        subject = subject.name;
         this.subjects.push(subject);
+        subject.students.push(this);
     },
     quitSubject: function (subject) {
-        const index = this.subjects.indexOf[subject];
+        const index = this.subjects.indexOf(subject);
         if (index !== -1) {
             this.subjects.splice(index, 1)
         }
+        const subjectIndex = subject.students.indexOf(this);
+        if ( subjectIndex !== -1 ) {
+            subject.students.splice(subjectIndex, 1);
+        }
+
     },
 }
 const ludvig = {
@@ -119,14 +128,19 @@ const ludvig = {
     gender: "male",
     subjects: [],
     enlistToSubject: function (subject) {
-        subject = subject.name;
         this.subjects.push(subject);
+        subject.students.push(this);
     },
     quitSubject: function (subject) {
-        const index = this.subjects.indexOf[subject];
+        const index = this.subjects.indexOf(subject);
         if (index !== -1) {
             this.subjects.splice(index, 1)
         }
+        const subjectIndex = subject.students.indexOf(this);
+        if ( subjectIndex !== -1 ) {
+            subject.students.splice(subjectIndex, 1);
+        }
+
     },
 }
 const ida = {
@@ -135,14 +149,19 @@ const ida = {
     gender: "female",
     subjects: [],
     enlistToSubject: function (subject) {
-        subject = subject.name;
         this.subjects.push(subject);
+        subject.students.push(this);
     },
     quitSubject: function (subject) {
-        const index = this.subjects.indexOf[subject];
+        const index = this.subjects.indexOf(subject);
         if (index !== -1) {
             this.subjects.splice(index, 1)
         }
+        const subjectIndex = subject.students.indexOf(this);
+        if ( subjectIndex !== -1 ) {
+            subject.students.splice(subjectIndex, 1);
+        }
+
     },
 }
 
@@ -152,13 +171,16 @@ const jessica = {
     name: "Jessica",
     subjects: [],
     addSubject: function (subject) {
-        subject = subject.name;
         this.subjects.push(subject);
+        subject.teacher = this;
     },
     quitSubject: function (subject) {
-        const index = this.subjects.indexOf[subject];
+        const index = this.subjects.indexOf(subject);
         if (index !== -1) {
             this.subjects.splice(index, 1)
+        }
+        if (subject.teacher === this) {
+            subject.teacher = {};
         }
     },
 }
@@ -166,17 +188,19 @@ const anita = {
     name: "Anita",
     subjects: [],
     addSubject: function (subject) {
-        subject = subject.name;
         this.subjects.push(subject);
+        subject.teacher = this
     },
     quitSubject: function (subject) {
-        const index = this.subjects.indexOf[subject];
+        const index = this.subjects.indexOf(subject);
         if (index !== -1) {
             this.subjects.splice(index, 1)
         }
+        if (subject.teacher === this) {
+            subject.teacher = {};
+        }
     },
 }
-
 // 5
 
 jessica.subjects.push("Math");
@@ -229,8 +253,8 @@ addSubject: function (subject) {
 }, */
 
 /* removeTeacher: function (teacher) {},
- */
-/* relegateStudent: function (student) {
+
+relegateStudent: function (student) {
     const index = this.students.indexOf[student];
     if (index !== -1) {
         this.students.splice(index, 1)
